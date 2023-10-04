@@ -68,21 +68,27 @@ export const useShoppingStore = defineStore('shopping', {
               Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'เพิ่มสินค้าไปตะกร้าเรียบร้อยแล้ว',
+                title: 'เพิ่มสินค้าอีก 1 รายการเรียบร้อย',
                 showConfirmButton: false,
                 timer: 1500
               });
             }else {
               item.quantity = 1;
               this.cartItems.push(item);
-              
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'เพิ่มสินค้าไปที่ตะกร้าเรียบร้อย',
+                showConfirmButton: false,
+                timer: 1500
+              });
             }
         },
         incrementQ(item) {
             let index = this.cartItems.findIndex(product => product.id === item.id);
             if(index !== -1) {
                 this.cartItems[index].quantity += 1;
-                
+
             }
         },
         decrementQ(item) {
@@ -92,7 +98,7 @@ export const useShoppingStore = defineStore('shopping', {
                 if(this.cartItems[index].quantity === 0){
                     this.cartItems = this.cartItems.filter(product => product.id !== item.id);
                 }
-                
+ 
             }
         },
         removeFromCart(item) {
